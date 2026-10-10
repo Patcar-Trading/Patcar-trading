@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Contact — Patcar International</title>
+<link href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--ink:#1a1520;--panel:#241d2b;--ruby:#a83250;--gold:#c9a45c;--paper:#f0e8ea;--mid:#8a7d88;--line:rgba(240,232,234,0.1);}
+body{background:var(--ink);color:var(--paper);font-family:'Nunito Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+
+nav{height:78px;position:sticky;top:0;z-index:100;display:flex;}
+.nav-panel-left{flex:0 0 42%;background:var(--panel);clip-path:polygon(0 0,100% 0,84% 100%,0 100%);display:flex;align-items:center;padding:0 0 0 6%;}
+.nav-panel-right{flex:1;background:var(--ink);border-bottom:1px solid var(--line);margin-left:-6%;padding-left:9%;display:flex;align-items:center;justify-content:space-between;padding-right:6%;}
+.nav-brand{display:flex;align-items:center;gap:0.6rem;}
+.nb-mark{width:26px;height:26px;flex-shrink:0;}
+.nb-name{font-family:'Cardo',serif;font-weight:700;font-size:1.2rem;}
+.nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center;}
+.nav-links a{font-size:0.8rem;color:var(--mid);transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-cta{padding:0.55rem 1.3rem;background:var(--ruby);color:var(--paper);border-radius:2px;font-size:0.76rem;font-weight:500;transition:background 0.2s;}
+.nav-cta:hover{background:#c2415f;}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.burger span{display:block;width:22px;height:1.5px;background:var(--paper);}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--ink);z-index:999;flex-direction:column;justify-content:center;padding:4rem 8%;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Cardo',serif;font-size:2.1rem;font-weight:700;color:var(--paper);padding:0.6rem 0;border-bottom:1px solid var(--line);}
+.mm-close{position:absolute;top:1.8rem;right:8%;background:none;border:1px solid var(--line);color:var(--paper);font-size:0.7rem;padding:0.5rem 1rem;cursor:pointer;font-family:'Nunito Sans',sans-serif;}
+
+/* DRAW A THREAD — form with a flowing thread-line divider, distinct from index+about */
+.thread-wrap{max-width:640px;margin:4.5rem auto 6rem;padding:0 6%;text-align:center;}
+.tw-tag{font-size:0.76rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;}
+.thread-wrap h1{font-family:'Cardo',serif;font-size:clamp(1.9rem,3.6vw,3rem);font-weight:700;line-height:1.2;margin-bottom:1rem;}
+.thread-wrap h1 em{font-style:italic;color:var(--ruby);}
+.thread-wrap>p{font-size:0.9rem;color:var(--mid);margin-bottom:2rem;}
+.thread-divider{width:100%;height:16px;margin-bottom:2rem;}
+
+.cform{display:flex;flex-direction:column;gap:1.1rem;text-align:left;}
+.fg{display:flex;flex-direction:column;gap:0.4rem;}
+.fg label{font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);}
+.fg input,.fg select,.fg textarea{padding:0.8rem 1rem;background:var(--panel);border:1px solid var(--line);color:var(--paper);font-family:'Nunito Sans',sans-serif;font-size:0.9rem;outline:none;border-radius:2px;transition:border-color 0.2s;}
+.fg input:-webkit-autofill,.fg input:-webkit-autofill:hover,.fg input:-webkit-autofill:focus,.fg input:-webkit-autofill:active{-webkit-box-shadow:0 0 0 1000px var(--panel) inset;-webkit-text-fill-color:var(--paper);caret-color:var(--paper);transition:background-color 5000s ease-in-out 0s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);}
+.fg select option{background:var(--panel);}
+.fg textarea{resize:vertical;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;}
+.submit-btn{padding:0.9rem;background:var(--ruby);color:var(--paper);font-size:0.78rem;font-weight:600;border:none;border-radius:2px;cursor:pointer;transition:background 0.2s;}
+.submit-btn:hover{background:#c2415f;}
+.success-box{padding:1rem 0;text-align:center;}
+.sb-ring{width:52px;height:52px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;color:var(--gold);font-size:1.3rem;}
+.success-box h3{color:var(--paper);font-family:'Cardo',serif;font-size:1.3rem;margin-bottom:0.4rem;}
+.success-box p{color:var(--mid);font-size:0.87rem;}
+
+.thread-info{display:flex;justify-content:center;gap:2rem;margin-top:2.2rem;flex-wrap:wrap;}
+.thread-info div{text-align:center;}
+.thread-info strong{display:block;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.3rem;}
+.thread-info span,.thread-info a{font-size:0.82rem;color:var(--mid);}
+
+footer{background:var(--panel);padding:4rem 6% 0;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:2.5rem;padding-bottom:3rem;border-bottom:1px solid var(--line);}
+.f-brand{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.9rem;}
+.f-col p{color:var(--mid);font-size:0.82rem;line-height:1.85;}
+.f-col h4{font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.9rem;}
+.f-col ul{list-style:none;display:flex;flex-direction:column;gap:0.45rem;}
+.f-col ul li,.f-col ul a,.f-col a{font-size:0.82rem;color:var(--mid);transition:color 0.2s;}
+.f-col ul a:hover{color:var(--gold);}
+.footer-bottom{display:flex;justify-content:space-between;padding:1.4rem 0;font-size:0.68rem;color:rgba(240,232,234,0.3);flex-wrap:wrap;gap:0.5rem;}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 0.6s,transform 0.6s;}
+.reveal.in{opacity:1;transform:none;}
+
+@media(max-width:900px){.nav-panel-left{flex:0 0 50%;}}
+@media(max-width:600px){.nav-panel-left{flex:0 0 60%;}.nav-links{display:none;}.nav-cta{display:none;}.burger{display:flex;}.form-row{grid-template-columns:1fr;}.footer-top{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="mobile-menu" id="mMenu">
+  <button class="mm-close" id="mmClose">✕ Close</button>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<nav>
+  <div class="nav-panel-left"><div class="nav-brand"><svg class="nb-mark" viewBox="0 0 26 26"><path d="M4 8 L22 18 M4 18 L22 8" stroke="#c9a45c" stroke-width="1.6"/><circle cx="13" cy="13" r="10" fill="none" stroke="#a83250" stroke-width="1.2"/></svg><div class="nb-name">Patcar</div></div></div>
+  <div class="nav-panel-right">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Request a Quote</a>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="thread-wrap reveal">
+  <div class="tw-tag">Get in Touch</div>
+  <h1>Draw a <em>new thread.</em></h1>
+  <p>We respond within one business day.</p>
+  <svg class="thread-divider" viewBox="0 0 400 16" preserveAspectRatio="none"><path d="M0,8 Q100,-2 200,8 T400,8" fill="none" stroke="#c9a45c" stroke-width="1.2" opacity="0.5"/></svg>
+
+  <form class="cform" id="cForm">
+    <div class="form-row">
+      <div class="fg"><label>Full Name</label><input type="text" placeholder="Your name" required/></div>
+      <div class="fg"><label>Company</label><input type="text" placeholder="Company name" autocomplete="off"/></div>
+    </div>
+    <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com" required/></div>
+    <div class="fg"><label>Category</label><select><option value="">— Select —</option><option>Machinery &amp; Equipment</option><option>Spare Parts</option><option>Building Materials</option><option>Plastic Raw Materials</option><option>Steel Products</option><option>Auto Spare Parts</option><option>General Enquiry</option></select></div>
+    <div class="fg"><label>Message</label><textarea rows="4" placeholder="Describe your requirements..." required></textarea></div>
+    <button type="submit" class="submit-btn">Send Enquiry</button>
+  </form>
+  <div id="cSuccess" style="display:none;">
+    <div class="success-box">
+      <div class="sb-ring">✓</div>
+      <h3>Enquiry Received</h3>
+      <p>We will respond within one business day.</p>
+    </div>
+  </div>
+
+  <div class="thread-info">
+    <div><strong>Address</strong><span>148 Electric Road<br/>North Point, HKG</span></div>
+    <div><strong>Email</strong><a href="mailto:info@patcarinternational.com">info@patcarinternational.com</a></div>
+    <div><strong>Hours</strong><span>Mon–Fri 9am–6pm HKT</span></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="f-brand"><svg class="nb-mark" viewBox="0 0 26 26"><path d="M4 8 L22 18 M4 18 L22 8" stroke="#c9a45c" stroke-width="1.6"/><circle cx="13" cy="13" r="10" fill="none" stroke="#a83250" stroke-width="1.2"/></svg><div class="nb-name">Patcar</div></div>
+      <p>RM 2502C, 25/F, 148 Electric Road<br/>North Point, HKG</p>
+    </div>
+    <div class="f-col"><h4>Navigate</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="f-col"><h4>Categories</h4><ul><li>Machinery</li><li>Spare Parts</li><li>Building Materials</li><li>Plastics</li><li>Steel</li><li>Auto Parts</li></ul></div>
+    <div class="f-col"><h4>Hours</h4><ul><li>Mon–Fri 9am–6pm HKT</li><li>Sat 9am–1pm HKT</li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 PATCAR INTERNATIONAL IMPORT &amp; EXPORT CO., LIMITED</p><p>NORTH POINT · HONG KONG</p></div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.getElementById('burger').onclick=()=>document.getElementById('mMenu').classList.add('open');
+document.getElementById('mmClose').onclick=()=>document.getElementById('mMenu').classList.remove('open');
+const form=document.getElementById('cForm'),succ=document.getElementById('cSuccess');
+form.addEventListener('submit',e=>{e.preventDefault();form.style.opacity='0';setTimeout(()=>{form.style.display='none';succ.style.display='block';},400);});
+</script>
+</body>
+</html>

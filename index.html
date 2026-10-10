@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Patcar International Import & Export Co., Limited</title>
+<link href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ink:#1a1520;--panel:#241d2b;--ruby:#a83250;--gold:#c9a45c;
+  --paper:#f0e8ea;--mid:#8a7d88;--line:rgba(240,232,234,0.1);
+}
+body{background:var(--ink);color:var(--paper);font-family:'Nunito Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+.cardo{font-family:'Cardo',serif;}
+.photo{background-size:cover;background-position:center;background-color:#1e1826;}
+
+/* WOVEN-PANEL NAV — diagonal split into two interlocking panels, replaces every prior chrome pattern */
+nav{height:78px;position:sticky;top:0;z-index:100;display:flex;}
+.nav-panel-left{flex:0 0 42%;background:var(--panel);clip-path:polygon(0 0,100% 0,84% 100%,0 100%);display:flex;align-items:center;padding:0 0 0 6%;}
+.nav-panel-right{flex:1;background:var(--ink);border-bottom:1px solid var(--line);margin-left:-6%;padding-left:9%;display:flex;align-items:center;justify-content:space-between;padding-right:6%;}
+.nav-brand{display:flex;align-items:center;gap:0.6rem;}
+.nb-mark{width:26px;height:26px;flex-shrink:0;}
+.nb-name{font-family:'Cardo',serif;font-weight:700;font-size:1.2rem;}
+.nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center;}
+.nav-links a{font-size:0.8rem;font-weight:400;color:var(--mid);transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-cta{padding:0.55rem 1.3rem;background:var(--ruby);color:var(--paper);border-radius:2px;font-size:0.76rem;font-weight:500;transition:background 0.2s;}
+.nav-cta:hover{background:#c2415f;}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.burger span{display:block;width:22px;height:1.5px;background:var(--paper);}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--ink);z-index:999;flex-direction:column;justify-content:center;padding:4rem 8%;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Cardo',serif;font-size:2.1rem;font-weight:700;color:var(--paper);padding:0.6rem 0;border-bottom:1px solid var(--line);}
+.mm-close{position:absolute;top:1.8rem;right:8%;background:none;border:1px solid var(--line);color:var(--paper);font-size:0.7rem;padding:0.5rem 1rem;cursor:pointer;font-family:'Nunito Sans',sans-serif;}
+
+/* HERO — crossing thread lines background, no photo */
+.hero{position:relative;padding:6rem 6% 5.5rem;overflow:hidden;text-align:center;}
+.thread-bg{position:absolute;inset:0;pointer-events:none;opacity:0.35;}
+.hero-inner{position:relative;z-index:1;max-width:780px;margin:0 auto;}
+.hc-tag{font-size:0.76rem;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:1.6rem;}
+.hero-h1{font-family:'Cardo',serif;font-size:clamp(2.2rem,4.6vw,3.9rem);font-weight:700;line-height:1.18;margin-bottom:1.6rem;}
+.hero-h1 em{font-style:italic;color:var(--ruby);}
+.hero-sub{font-size:0.98rem;line-height:1.9;color:var(--mid);max-width:520px;margin:0 auto 2.2rem;}
+.hero-btns{display:flex;justify-content:center;gap:1.2rem;}
+.btn-primary{padding:0.85rem 2rem;background:var(--ruby);color:var(--paper);border-radius:2px;font-size:0.8rem;font-weight:500;transition:background 0.2s;}
+.btn-primary:hover{background:#c2415f;}
+.btn-outline{padding:0.85rem 2rem;border:1.5px solid rgba(240,232,234,0.3);color:var(--paper);border-radius:2px;font-size:0.8rem;font-weight:500;transition:all 0.2s;}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+
+/* WEAVE GRID — cards connected by crossing diagonal thread lines, replaces every prior product layout */
+.weave-section{padding:1rem 6% 6rem;max-width:1200px;margin:0 auto;position:relative;}
+.ws-head{margin-bottom:2.8rem;max-width:600px;}
+.ws-tag{font-size:0.76rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:0.9rem;}
+.ws-head h2{font-family:'Cardo',serif;font-size:clamp(1.6rem,2.6vw,2.2rem);font-weight:700;line-height:1.3;}
+.ws-head h2 em{font-style:italic;color:var(--ruby);}
+.weave-wrap{position:relative;}
+.weave-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.5;}
+.weave-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;position:relative;z-index:1;}
+.weave-card{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:1.8rem 1.6rem;transition:border-color 0.25s,transform 0.25s;}
+.weave-card:hover{border-color:var(--gold);transform:translateY(-2px);}
+.weave-num{font-family:'Cardo',serif;font-style:italic;color:var(--gold);font-size:0.95rem;margin-bottom:0.6rem;}
+.weave-card h3{font-size:1rem;font-weight:600;margin-bottom:0.5rem;}
+.weave-card p{font-size:0.83rem;color:var(--mid);line-height:1.7;}
+
+/* MODEST QUOTE */
+.thread-quote{padding:1rem 6% 5.5rem;display:flex;justify-content:center;}
+.tq-box{max-width:600px;text-align:center;position:relative;padding:0 0 0 1.6rem;border-left:2px solid var(--ruby);}
+.tq-box blockquote{font-family:'Cardo',serif;font-style:italic;font-size:clamp(1.1rem,2vw,1.45rem);line-height:1.6;color:var(--paper);text-align:left;}
+.tq-box cite{display:block;margin-top:1.2rem;font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--mid);text-align:left;}
+
+/* FEATURE — modest photo, text */
+.feature{padding:1rem 6% 6rem;max-width:1200px;margin:0 auto;}
+.feat-grid{display:grid;grid-template-columns:1fr 300px;gap:3.5rem;align-items:center;}
+.ft-tag{font-size:0.76rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;}
+.feat-txt h2{font-family:'Cardo',serif;font-size:clamp(1.5rem,2.4vw,2.1rem);font-weight:700;line-height:1.3;margin-bottom:1.2rem;}
+.feat-txt h2 em{font-style:italic;color:var(--ruby);}
+.feat-txt p{font-size:0.92rem;color:var(--mid);line-height:1.9;margin-bottom:1rem;}
+.feat-list{list-style:none;display:flex;flex-direction:column;gap:0.55rem;margin-top:0.6rem;}
+.feat-list li{font-size:0.86rem;color:var(--paper);display:flex;gap:0.6rem;}
+.feat-list li::before{content:'—';color:var(--gold);}
+.feat-photo{height:280px;border-radius:2px;overflow:hidden;}
+
+/* STITCHED TAGS — small fabric-swatch style tags in a row, replaces the generic 4-column stat grid */
+.stats-tags{display:flex;justify-content:center;gap:1.4rem;flex-wrap:wrap;padding:5rem 6% 4rem;max-width:1100px;margin:0 auto;}
+.stat-tag{border:1.5px dashed var(--gold);border-radius:6px;padding:1.4rem 2rem;text-align:center;min-width:130px;position:relative;}
+.stat-tag::before{content:'';position:absolute;top:-4px;left:50%;transform:translateX(-50%);width:8px;height:8px;background:var(--ruby);border-radius:50%;border:1px solid var(--ink);}
+.tag-val{font-family:'Cardo',serif;font-style:italic;font-size:1.7rem;color:var(--gold);line-height:1;}
+.tag-lbl{font-size:0.62rem;color:var(--mid);text-transform:uppercase;letter-spacing:0.08em;margin-top:0.5rem;}
+
+/* CTA */
+.cta{padding:5rem 6%;text-align:center;}
+.cta h2{font-family:'Cardo',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;margin-bottom:0.8rem;}
+.cta h2 em{font-style:italic;color:var(--ruby);}
+.cta p{font-size:0.92rem;color:var(--mid);margin-bottom:1.8rem;}
+
+/* FOOTER */
+footer{background:var(--panel);padding:4rem 6% 0;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:2.5rem;padding-bottom:3rem;border-bottom:1px solid var(--line);}
+.f-brand{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.9rem;}
+.f-col p{color:var(--mid);font-size:0.82rem;line-height:1.85;}
+.f-col h4{font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.9rem;}
+.f-col ul{list-style:none;display:flex;flex-direction:column;gap:0.45rem;}
+.f-col ul li,.f-col ul a,.f-col a{font-size:0.82rem;color:var(--mid);transition:color 0.2s;}
+.f-col ul a:hover{color:var(--gold);}
+.footer-bottom{display:flex;justify-content:space-between;padding:1.4rem 0;font-size:0.68rem;color:rgba(240,232,234,0.3);flex-wrap:wrap;gap:0.5rem;}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 0.6s,transform 0.6s;}
+.reveal.in{opacity:1;transform:none;}
+
+@media(max-width:900px){
+  .nav-panel-left{flex:0 0 50%;}
+  .weave-grid{grid-template-columns:1fr 1fr;}
+  .feat-grid{grid-template-columns:1fr;gap:2rem;}
+  .feat-photo{max-width:300px;margin:0 auto;}
+  .stats{grid-template-columns:1fr 1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:600px){
+  .nav-panel-left{flex:0 0 60%;}
+  .nav-links{display:none;}
+  .nav-cta{display:none;}
+  .burger{display:flex;}
+  .weave-grid{grid-template-columns:1fr;}
+  .stats-tags{gap:1rem;}
+  .stat-tag{min-width:110px;padding:1.1rem 1.4rem;}
+  .footer-top{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="mobile-menu" id="mMenu">
+  <button class="mm-close" id="mmClose">✕ Close</button>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<nav>
+  <div class="nav-panel-left">
+    <div class="nav-brand">
+      <svg class="nb-mark" viewBox="0 0 26 26"><path d="M4 8 L22 18 M4 18 L22 8" stroke="#c9a45c" stroke-width="1.6"/><circle cx="13" cy="13" r="10" fill="none" stroke="#a83250" stroke-width="1.2"/></svg>
+      <div class="nb-name">Patcar</div>
+    </div>
+  </div>
+  <div class="nav-panel-right">
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Request a Quote</a>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="hero">
+  <svg class="thread-bg" viewBox="0 0 1400 500">
+    <g stroke="#c9a45c" stroke-width="1">
+      <line x1="0" y1="0" x2="1400" y2="500" opacity="0.3"/>
+      <line x1="0" y1="100" x2="1400" y2="600" opacity="0.25"/>
+      <line x1="1400" y1="0" x2="0" y2="500" opacity="0.3"/>
+      <line x1="1400" y1="100" x2="0" y2="600" opacity="0.25"/>
+      <line x1="700" y1="-100" x2="700" y2="600" opacity="0.2"/>
+    </g>
+  </svg>
+  <div class="hero-inner">
+    <div class="hc-tag">North Point · Hong Kong</div>
+    <h1 class="hero-h1">Every supply line,<br/><em>tightly woven.</em></h1>
+    <p class="hero-sub">Patcar International Import &amp; Export brings together manufacturers, materials, and logistics into one dependable thread — machinery, steel, and components sourced with care.</p>
+    <div class="hero-btns">
+      <a href="contact.html" class="btn-primary">Request a Quote</a>
+      <a href="about.html" class="btn-outline">About Patcar</a>
+    </div>
+  </div>
+</section>
+
+<section class="weave-section reveal">
+  <div class="ws-head">
+    <div class="ws-tag">Six Categories</div>
+    <h2>Every thread, <em>drawn together.</em></h2>
+  </div>
+  <div class="weave-wrap">
+    <svg class="weave-svg" viewBox="0 0 1200 400" preserveAspectRatio="none">
+      <g stroke="#c9a45c" stroke-width="0.75">
+        <line x1="0" y1="0" x2="1200" y2="400"/>
+        <line x1="1200" y1="0" x2="0" y2="400"/>
+        <line x1="400" y1="0" x2="1200" y2="200"/>
+        <line x1="800" y1="0" x2="0" y2="200"/>
+      </g>
+    </svg>
+    <div class="weave-grid">
+      <div class="weave-card"><div class="weave-num">I</div><h3>Machinery &amp; Equipment</h3><p>Industrial-grade machines for manufacturing and large-scale production.</p></div>
+      <div class="weave-card"><div class="weave-num">II</div><h3>Spare Parts</h3><p>OEM and aftermarket components for zero-interruption operations.</p></div>
+      <div class="weave-card"><div class="weave-num">III</div><h3>Building Materials</h3><p>Structural and finishing materials to international standards.</p></div>
+      <div class="weave-card"><div class="weave-num">IV</div><h3>Plastic Raw Materials</h3><p>Polymer grades for moulding, extrusion, and packaging.</p></div>
+      <div class="weave-card"><div class="weave-num">V</div><h3>Steel Products</h3><p>Structural and specialty alloys to exact specification.</p></div>
+      <div class="weave-card"><div class="weave-num">VI</div><h3>Auto Spare Parts</h3><p>Vehicle components for major global brands.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="thread-quote reveal">
+  <div class="tq-box">
+    <blockquote>"A supply chain, like a weave, is only as strong as its most careless thread — we treat every connection with equal precision."</blockquote>
+    <cite>— Patcar International Import &amp; Export Co., Limited</cite>
+  </div>
+</div>
+
+<section class="feature">
+  <div class="feat-grid reveal">
+    <div class="feat-txt">
+      <span class="ft-tag">Our Distinction</span>
+      <h2>Tightly woven.<br/><em>Never frayed.</em></h2>
+      <p>From our North Point office, Patcar connects buyers with Asia's most reliable industrial supply networks — every relationship drawn as tight as the last.</p>
+      <ul class="feat-list">
+        <li>Direct relationships with verified manufacturers</li>
+        <li>End-to-end quality verification on every order</li>
+        <li>One business day response, guaranteed</li>
+      </ul>
+      <a href="about.html" class="btn-primary" style="display:inline-block;margin-top:1rem;">About Patcar</a>
+    </div>
+    <div class="feat-photo photo" style="background-image:url('https://images.unsplash.com/photo-1565793979977-c05ddb757a5c?w=500&q=80');"></div>
+  </div>
+</section>
+
+<div class="stats-tags">
+  <div class="stat-tag"><div class="tag-val">6</div><div class="tag-lbl">Categories</div></div>
+  <div class="stat-tag"><div class="tag-val">30+</div><div class="tag-lbl">Countries</div></div>
+  <div class="stat-tag"><div class="tag-val">1</div><div class="tag-lbl">Day Response</div></div>
+  <div class="stat-tag"><div class="tag-val">HK</div><div class="tag-lbl">Based</div></div>
+</div>
+
+<div class="cta reveal">
+  <h2>Ready to <em>weave it together?</em></h2>
+  <p>Tell us what you need — we'll respond within one business day.</p>
+  <a href="contact.html" class="btn-primary">Request a Quote</a>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="f-brand"><svg class="nb-mark" viewBox="0 0 26 26"><path d="M4 8 L22 18 M4 18 L22 8" stroke="#c9a45c" stroke-width="1.6"/><circle cx="13" cy="13" r="10" fill="none" stroke="#a83250" stroke-width="1.2"/></svg><div class="nb-name">Patcar</div></div>
+      <p>RM 2502C, 25/F, 148 Electric Road<br/>North Point, HKG<br/><a href="mailto:info@patcarinternational.com" style="color:var(--gold);">info@patcarinternational.com</a></p>
+    </div>
+    <div class="f-col"><h4>Navigate</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="f-col"><h4>Categories</h4><ul><li>Machinery</li><li>Spare Parts</li><li>Building Materials</li><li>Plastics</li><li>Steel</li><li>Auto Parts</li></ul></div>
+    <div class="f-col"><h4>Hours</h4><ul><li>Mon–Fri 9am–6pm HKT</li><li>Sat 9am–1pm HKT</li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 PATCAR INTERNATIONAL IMPORT &amp; EXPORT CO., LIMITED</p>
+    <p>NORTH POINT · HONG KONG</p>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.getElementById('burger').onclick=()=>document.getElementById('mMenu').classList.add('open');
+document.getElementById('mmClose').onclick=()=>document.getElementById('mMenu').classList.remove('open');
+</script>
+</body>
+</html>

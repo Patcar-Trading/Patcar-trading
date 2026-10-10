@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>About — Patcar International</title>
+<link href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{--ink:#1a1520;--panel:#241d2b;--ruby:#a83250;--gold:#c9a45c;--paper:#f0e8ea;--mid:#8a7d88;--line:rgba(240,232,234,0.1);}
+body{background:var(--ink);color:var(--paper);font-family:'Nunito Sans',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+
+nav{height:78px;position:sticky;top:0;z-index:100;display:flex;}
+.nav-panel-left{flex:0 0 42%;background:var(--panel);clip-path:polygon(0 0,100% 0,84% 100%,0 100%);display:flex;align-items:center;padding:0 0 0 6%;}
+.nav-panel-right{flex:1;background:var(--ink);border-bottom:1px solid var(--line);margin-left:-6%;padding-left:9%;display:flex;align-items:center;justify-content:space-between;padding-right:6%;}
+.nav-brand{display:flex;align-items:center;gap:0.6rem;}
+.nb-mark{width:26px;height:26px;flex-shrink:0;}
+.nb-name{font-family:'Cardo',serif;font-weight:700;font-size:1.2rem;}
+.nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center;}
+.nav-links a{font-size:0.8rem;color:var(--mid);transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-cta{padding:0.55rem 1.3rem;background:var(--ruby);color:var(--paper);border-radius:2px;font-size:0.76rem;font-weight:500;transition:background 0.2s;}
+.nav-cta:hover{background:#c2415f;}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.burger span{display:block;width:22px;height:1.5px;background:var(--paper);}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--ink);z-index:999;flex-direction:column;justify-content:center;padding:4rem 8%;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Cardo',serif;font-size:2.1rem;font-weight:700;color:var(--paper);padding:0.6rem 0;border-bottom:1px solid var(--line);}
+.mm-close{position:absolute;top:1.8rem;right:8%;background:none;border:1px solid var(--line);color:var(--paper);font-size:0.7rem;padding:0.5rem 1rem;cursor:pointer;font-family:'Nunito Sans',sans-serif;}
+
+/* THE WEAVE — interlocking thread-line timeline, replaces generic about layout entirely */
+.page-hero{padding:4.5rem 6% 2rem;max-width:1200px;margin:0 auto;}
+.ph-tag{font-size:0.76rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem;}
+.page-hero h1{font-family:'Cardo',serif;font-size:clamp(2rem,3.8vw,3.4rem);font-weight:700;line-height:1.2;max-width:740px;}
+.page-hero h1 em{font-style:italic;color:var(--ruby);}
+
+.weave-timeline{max-width:1000px;margin:0 auto;padding:1rem 6% 5rem;position:relative;}
+.wt-thread{position:absolute;top:0;bottom:0;left:50%;width:1px;background:repeating-linear-gradient(to bottom,var(--gold) 0,var(--gold) 4px,transparent 4px,transparent 10px);transform:translateX(-50%);}
+.wt-row{display:grid;grid-template-columns:1fr 40px 1fr;align-items:center;margin-bottom:2.6rem;}
+.wt-row:last-child{margin-bottom:0;}
+.wt-node{grid-column:2;width:14px;height:14px;background:var(--ruby);border-radius:50%;justify-self:center;position:relative;z-index:1;}
+.wt-card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1.5rem 1.7rem;}
+.wt-row.wt-l .wt-card{grid-column:1;text-align:right;}
+.wt-row.wt-r .wt-card{grid-column:3;text-align:left;}
+.wt-tag{font-family:'Cardo',serif;font-style:italic;color:var(--gold);font-size:0.85rem;margin-bottom:0.4rem;}
+.wt-card h3{font-size:0.98rem;font-weight:600;margin-bottom:0.5rem;}
+.wt-card p{font-size:0.84rem;color:var(--mid);line-height:1.7;}
+
+.btn-primary{display:inline-block;margin-top:0.6rem;padding:0.85rem 2rem;background:var(--ruby);color:var(--paper);border-radius:2px;font-size:0.8rem;font-weight:500;transition:background 0.2s;}
+.btn-primary:hover{background:#c2415f;}
+
+footer{background:var(--panel);padding:4rem 6% 0;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:2.5rem;padding-bottom:3rem;border-bottom:1px solid var(--line);}
+.f-brand{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.9rem;}
+.f-col p{color:var(--mid);font-size:0.82rem;line-height:1.85;}
+.f-col h4{font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.9rem;}
+.f-col ul{list-style:none;display:flex;flex-direction:column;gap:0.45rem;}
+.f-col ul li,.f-col ul a,.f-col a{font-size:0.82rem;color:var(--mid);transition:color 0.2s;}
+.f-col ul a:hover{color:var(--gold);}
+.footer-bottom{display:flex;justify-content:space-between;padding:1.4rem 0;font-size:0.68rem;color:rgba(240,232,234,0.3);flex-wrap:wrap;gap:0.5rem;}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 0.6s,transform 0.6s;}
+.reveal.in{opacity:1;transform:none;}
+
+@media(max-width:900px){.nav-panel-left{flex:0 0 50%;}
+  .wt-thread{left:20px;}
+  .wt-row{grid-template-columns:40px 1fr;}
+  .wt-node{grid-column:1;justify-self:start;margin-left:14px;}
+  .wt-row.wt-l .wt-card,.wt-row.wt-r .wt-card{grid-column:2;text-align:left;}
+}
+@media(max-width:600px){.nav-panel-left{flex:0 0 60%;}.nav-links{display:none;}.nav-cta{display:none;}.burger{display:flex;}.footer-top{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="mobile-menu" id="mMenu">
+  <button class="mm-close" id="mmClose">✕ Close</button>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<nav>
+  <div class="nav-panel-left"><div class="nav-brand"><svg class="nb-mark" viewBox="0 0 26 26"><path d="M4 8 L22 18 M4 18 L22 8" stroke="#c9a45c" stroke-width="1.6"/><circle cx="13" cy="13" r="10" fill="none" stroke="#a83250" stroke-width="1.2"/></svg><div class="nb-name">Patcar</div></div></div>
+  <div class="nav-panel-right">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Request a Quote</a>
+    <button class="burger" id="burger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="ph-tag">Our Story</div>
+  <h1>Every thread, <em>drawn with care.</em></h1>
+</section>
+
+<section class="weave-timeline reveal">
+  <div class="wt-thread"></div>
+  <div class="wt-row wt-l"><div class="wt-card"><div class="wt-tag">Origin</div><h3>First Thread</h3><p>Patcar International was founded on the belief that a supply chain, like a weave, is only as strong as its most careless thread.</p></div><div class="wt-node"></div><div></div></div>
+  <div class="wt-row wt-r"><div></div><div class="wt-node"></div><div class="wt-card"><div class="wt-tag">Growth</div><h3>Six Threads Woven</h3><p>Full coverage established across machinery, steel, plastics, and more.</p></div></div>
+  <div class="wt-row wt-l"><div class="wt-card"><div class="wt-tag">Expansion</div><h3>30+ Countries</h3><p>Our verified manufacturer network now spans more than thirty countries.</p></div><div class="wt-node"></div><div></div></div>
+  <div class="wt-row wt-r"><div></div><div class="wt-node"></div><div class="wt-card"><div class="wt-tag">Present</div><h3>Tightly Held</h3><p>One business day response, held on every single order.</p></div></div>
+  <div class="wt-row wt-l"><div class="wt-card"><div class="wt-tag">Anchor</div><h3>North Point, Hong Kong</h3><p>RM 2502C, 25/F, 148 Electric Road<br/><a href="mailto:info@patcarinternational.com" style="color:var(--gold);">info@patcarinternational.com</a></p></div><div class="wt-node"></div><div></div></div>
+</section>
+
+<div style="text-align:center;padding:1rem 6% 5rem;">
+  <a href="contact.html" class="btn-primary">Request a Quote</a>
+</div>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="f-brand"><svg class="nb-mark" viewBox="0 0 26 26"><path d="M4 8 L22 18 M4 18 L22 8" stroke="#c9a45c" stroke-width="1.6"/><circle cx="13" cy="13" r="10" fill="none" stroke="#a83250" stroke-width="1.2"/></svg><div class="nb-name">Patcar</div></div>
+      <p>RM 2502C, 25/F, 148 Electric Road<br/>North Point, HKG</p>
+    </div>
+    <div class="f-col"><h4>Navigate</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="f-col"><h4>Categories</h4><ul><li>Machinery</li><li>Spare Parts</li><li>Building Materials</li><li>Plastics</li><li>Steel</li><li>Auto Parts</li></ul></div>
+    <div class="f-col"><h4>Hours</h4><ul><li>Mon–Fri 9am–6pm HKT</li><li>Sat 9am–1pm HKT</li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 PATCAR INTERNATIONAL IMPORT &amp; EXPORT CO., LIMITED</p><p>NORTH POINT · HONG KONG</p></div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.getElementById('burger').onclick=()=>document.getElementById('mMenu').classList.add('open');
+document.getElementById('mmClose').onclick=()=>document.getElementById('mMenu').classList.remove('open');
+</script>
+</body>
+</html>
